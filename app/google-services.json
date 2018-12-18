@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "893756156021",
+    "firebase_url": "https://dawrlyapp.firebaseio.com",
+    "project_id": "dawrlyapp",
+    "storage_bucket": "dawrlyapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893756156021:android:990e6a8ef8728ec4",
+        "android_client_info": {
+          "package_name": "com.example.khaled.dawarly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893756156021-l2j4n7jejgoa9bh54j6j02jeq9li98uh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.khaled.dawarly",
+            "certificate_hash": "c8bb23f0c8f3662d81a9f23b58dddac69fa51b86"
+          }
+        },
+        {
+          "client_id": "893756156021-fkgp6lca5019okgiqcsfirqisub6s86v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNKnZHYRsSVWaTt956B47csULY8avtESE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893756156021-fkgp6lca5019okgiqcsfirqisub6s86v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

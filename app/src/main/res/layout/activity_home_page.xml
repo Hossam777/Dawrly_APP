@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_HomePage"
+    android:background="@color/backgroundColor">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <Button
+            android:textStyle="bold"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:background="@drawable/but"
+            android:text="Show Item"
+            android:textColor="#ffffff"
+            android:textSize="35dp"
+            android:fontFamily="casual"/>
+        <Button
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:background="@drawable/but"
+            android:text="Post Item"
+            android:textColor="#ffffff"
+            android:textSize="35dp"
+            android:fontFamily="casual"/>
+        <Button
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:background="@drawable/but"
+            android:text="My list"
+            android:textColor="#ffffff"
+            android:textSize="35dp"
+            android:fontFamily="casual"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
