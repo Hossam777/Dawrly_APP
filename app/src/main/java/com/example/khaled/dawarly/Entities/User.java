@@ -1,5 +1,7 @@
 package com.example.khaled.dawarly.Entities;
 
+import java.util.Map;
+
 public class User {
     private String Name;
     private String Password;
@@ -10,6 +12,9 @@ public class User {
     private float Rate;
     private boolean Ban_Status;
 
+    public User(){
+
+    }
     void setUser(String name,String password,String email,String mobile,String gender,int age,float rate,boolean ban_Status){
         Name = name;
         Password = password;
@@ -20,13 +25,21 @@ public class User {
         Rate = rate;
         Ban_Status = ban_Status;
     }
-    String getName(){return Name;}
-    String getPassword(){return Password;}
-    String getEmail(){return Email;}
-    String getMobile(){return Mobile;}
-    String getGender(){return Gender;}
-    int getAge(){return Age;}
-    float getRate(){return Rate;}
-    Boolean getBan_Status(){return Ban_Status;}
+    public String getName(){return Name;}
+    public String getPassword(){return Password;}
+    public String getEmail(){return Email;}
+    public String getMobile(){return Mobile;}
+    public String getGender(){return Gender;}
+    public int getAge(){return Age;}
+    public float getRate(){return Rate;}
+    public Boolean getBan_Status(){return Ban_Status;}
 
+    public void setName(String name){Name = name;}
+    public void setPassword(String password){Password = password;}
+    public void setEmail(String email){Email = email;}
+    public void setMobile(String mobile){Mobile = mobile;}
+    public void setGender(String gender){Gender = gender;}
+    public void setAge(int age){Age = age;}
+    public void setRate(float rate){Rate = rate;}
+    public void setBan_Status(boolean ban_Status){Ban_Status = ban_Status;}
 }

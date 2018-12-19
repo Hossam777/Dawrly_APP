@@ -4,6 +4,9 @@ public class Quiz {
     String []Qestions;
     void setQestions(String []qestions){Qestions=qestions;}
 
+    public Quiz(String []qestions){
+        Qestions=qestions;
+    }
     public String[] getQestions() {
         return Qestions;
     }
