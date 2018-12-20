@@ -66,6 +66,8 @@ public class FireBaseClass {
                             user.setMobile(document.getData().get("Mobile").toString());
                         if(document.getData().get("Password") != null)
                             user.setPassword(document.getData().get("Password").toString());
+                        if(document.getData().get("List") != null)
+                            user.setList(document.getData().get("List").toString());
                         if(document.getData().get("UserData") != null)
                             userdata = document.getData().get("UserData").toString();
                         String arr[] = userdata.split(";");
@@ -97,6 +99,7 @@ public class FireBaseClass {
                         HashMap<String,String> userdata = new HashMap<>();
                         userdata.put("Mobile",user.getMobile());
                         userdata.put("Name",user.getName());
+                        userdata.put("List",user.getList());
                         userdata.put("Password",user.getPassword());
                         userdata.put("UserData",user.getGender()+";"+user.getAge()+";"+user.getRate()+";"+user.getBan_Status());
                         db.collection("USERS").document(user.getEmail()).set(userdata);
@@ -129,6 +132,7 @@ public class FireBaseClass {
                         HashMap<String,String> userdata = new HashMap<>();
                         userdata.put("Mobile",user.getMobile());
                         userdata.put("Name",user.getName());
+                        userdata.put("List",user.getList());
                         userdata.put("Password",user.getPassword());
                         userdata.put("UserData",user.getGender()+";"+user.getAge()+";"+user.getRate()+";"+user.getBan_Status());
                         db.collection("USERS").document(user.getEmail()).set(userdata);

@@ -7,6 +7,7 @@ public class User {
     private String Password;
     private String Email;
     private String Mobile;
+    private String List;
     private String Gender;
     private int Age;
     private float Rate;
@@ -15,17 +16,24 @@ public class User {
     public User(){
 
     }
-    public void setUser(String name,String password,String email,String mobile,String gender,int age,float rate,boolean ban_Status){
+    public void setUser(String name,String password,String list,String email,String mobile,String gender,int age,float rate,boolean ban_Status){
         Name = name;
         Password = password;
         Email = email;
         Mobile = mobile;
         Gender = gender;
+        List = list;
         Age = age;
         Rate = rate;
         Ban_Status = ban_Status;
     }
+    private User current_user;
+
+    public void setCurrent_user(User current_user) {this.current_user = current_user; }
+    public User getCurrent_user() {return  current_user; }
+
     public String getName(){return Name;}
+    public String getList(){return List;}
     public String getPassword(){return Password;}
     public String getEmail(){return Email;}
     public String getMobile(){return Mobile;}
@@ -35,6 +43,7 @@ public class User {
     public Boolean getBan_Status(){return Ban_Status;}
 
     public void setName(String name){Name = name;}
+    public void setList(String list){List = list;}
     public void setPassword(String password){Password = password;}
     public void setEmail(String email){Email = email;}
     public void setMobile(String mobile){Mobile = mobile;}
