@@ -15,7 +15,7 @@ public class User {
     public User(){
 
     }
-    void setUser(String name,String password,String email,String mobile,String gender,int age,float rate,boolean ban_Status){
+    public void setUser(String name,String password,String email,String mobile,String gender,int age,float rate,boolean ban_Status){
         Name = name;
         Password = password;
         Email = email;

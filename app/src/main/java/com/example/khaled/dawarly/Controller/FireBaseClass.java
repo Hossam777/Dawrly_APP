@@ -1,3 +1,5 @@
+package com.example.khaled.dawarly.Controller;
+
 import android.app.Activity;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -29,20 +31,26 @@ public class FireBaseClass {
     //callback template to use
     public interface FirebaseCallback
     {
+        void upload_done(boolean bool);
         void geturi(String uri);
+        void getitems(ArrayList<Item> items);
+        void getreports(ArrayList<Report> reports);
+        void getuser(User user);
     }
 
-    private StorageReference mstorageRef = FirebaseStorage.getInstance().getReference();
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private StorageReference mstorageRef ;
+    private FirebaseFirestore db ;
     Activity activity;
 
     public FireBaseClass(Activity a)
     {
         activity = a;
+        db = FirebaseFirestore.getInstance();
+        mstorageRef = FirebaseStorage.getInstance().getReference();
     }
 
 
-    public void ReadUser(String mail,String Password){
+    public void LoadUser(String mail,String Password,final FirebaseCallback firebaseCallback){
         DocumentReference docRef = db.collection("USERS").document(mail);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -65,16 +73,19 @@ public class FireBaseClass {
                         user.setAge(Integer.parseInt(arr[1]));
                         user.setRate(Float.parseFloat(arr[2]));
                         user.setBan_Status(Boolean.parseBoolean(arr[3]));
+                        firebaseCallback.getuser(user);
                     } else {
-
+                        firebaseCallback.getuser(null);
                     }
                 } else {
                     //task not successfull
+                    Toast.makeText(activity,"Firebase is busy, try again later",Toast.LENGTH_SHORT).show();
+                    firebaseCallback.getuser(null);
                 }
             }
         });
     }
-    public void SetUser(final User user){
+    public void UpdateUser(final User user,final FirebaseCallback firebaseCallback){
         DocumentReference docRef = db.collection("USERS").document(user.getEmail());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -83,27 +94,60 @@ public class FireBaseClass {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         //cannt signup with the same mail
+                        HashMap<String,String> userdata = new HashMap<>();
+                        userdata.put("Mobile",user.getMobile());
+                        userdata.put("Name",user.getName());
+                        userdata.put("Password",user.getPassword());
+                        userdata.put("UserData",user.getGender()+";"+user.getAge()+";"+user.getRate()+";"+user.getBan_Status());
+                        db.collection("USERS").document(user.getEmail()).set(userdata);
+                        firebaseCallback.upload_done(true);
+
+                    } else {
+                        Toast.makeText(activity,"could not update",Toast.LENGTH_SHORT).show();
+                        firebaseCallback.upload_done(false);
+                    }
+                } else {
+                    Toast.makeText(activity,"Server busy, try again later",Toast.LENGTH_SHORT).show();
+                    firebaseCallback.upload_done(false);
+                }
+            }
+        });
+    }
+    public void UploadUser(final User user,final FirebaseCallback firebaseCallback){
+        DocumentReference docRef = db.collection("USERS").document(user.getEmail());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        //cannt signup with the same mail
                         Toast.makeText(activity,"this mail already signed up",Toast.LENGTH_SHORT).show();
+                        firebaseCallback.upload_done(false);
                     } else {
                         HashMap<String,String> userdata = new HashMap<>();
                         userdata.put("Mobile",user.getMobile());
                         userdata.put("Name",user.getName());
                         userdata.put("Password",user.getPassword());
                         userdata.put("UserData",user.getGender()+";"+user.getAge()+";"+user.getRate()+";"+user.getBan_Status());
-                        db.collection("USERS").add(userdata).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentReference> task) {
-                                Toast.makeText(activity,"Sign up done.",Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        db.collection("USERS").document(user.getEmail()).set(userdata);
+                        firebaseCallback.upload_done(true);
                     }
                 } else {
                     Toast.makeText(activity,"Server busy, try again later",Toast.LENGTH_SHORT).show();
+                    firebaseCallback.upload_done(false);
                 }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Toast.makeText(activity,"failed",Toast.LENGTH_SHORT).show();
             }
         });
     }
-    public void get_ALLItems(){
+    public void LoadItems(final FirebaseCallback firebaseCallback){
         final ArrayList<Item>items = new ArrayList<>();
         db.collection("ITEMS").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -124,11 +168,17 @@ public class FireBaseClass {
                                 item.setQuiz(document.getData().get("Quiz").toString());
                             items.add(item);
                         }
+                        firebaseCallback.getitems(items);
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(activity,"failed",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-    public void PostItem(final Item item){
-        Upload_photo(new FirebaseCallback() {
+    public void UploadItem(final Item item,final FirebaseCallback firebaseCallback){
+        UploadPhoto(item.getPicture(),new FirebaseCallback() {
             @Override
             public void geturi(String uri) {
                 final HashMap<String,String> itemdata = new HashMap<>();
@@ -138,29 +188,51 @@ public class FireBaseClass {
                 itemdata.put("Quiz",item.getQuiz().getQuestions_toString());
                 itemdata.put("Pic",uri);
                 db.collection("ITEMS").add(itemdata);
+                firebaseCallback.upload_done(true);
             }
-        },item.getPicture());
+            @Override
+            public void upload_done(boolean bool) {
+                if(!bool)
+                    firebaseCallback.upload_done(false);
+            }
+
+            @Override
+            public void getitems(ArrayList<Item> items) {
+
+            }
+
+            @Override
+            public void getreports(ArrayList<Report> reports) {
+
+            }
+
+            @Override
+            public void getuser(User user) {
+
+            }
+
+        });
     }
 
-    public void Delete_Item(String id){
+    public void DeleteItem(String id,final FirebaseCallback firebaseCallback){
         db.collection("ITEMS").document(id)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
+                        firebaseCallback.upload_done(true);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        firebaseCallback.upload_done(false);
                     }
                 });
 
     }
 
-    public void LoadReports(){
+    public void LoadReports(final FirebaseCallback firebaseCallback){
         final ArrayList<Report> reports = new ArrayList<>();
         db.collection("REPORTS").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -175,10 +247,11 @@ public class FireBaseClass {
                                     report.setDescription(document.getData().get("Description").toString());
                                 reports.add(report);
                 }
+                        firebaseCallback.getreports(reports);
             }
         });
     }
-    public void UploadReport(Report report){
+    public void UploadReport(Report report,final FirebaseCallback firebaseCallback){
         HashMap<String,String> reportdata = new HashMap<>();
         reportdata.put("Email",report.getEmail());
         reportdata.put("Description",report.getDescription());
@@ -186,16 +259,18 @@ public class FireBaseClass {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
                 Toast.makeText(activity,"Report uploaded",Toast.LENGTH_SHORT).show();
+                firebaseCallback.upload_done(true);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(activity,"Failed, Try again later",Toast.LENGTH_SHORT).show();
+                firebaseCallback.upload_done(false);
             }
         });
     }
 
-    public void Upload_photo(final FirebaseCallback firebaseCallback,Uri file){
+    public void UploadPhoto(Uri file,final FirebaseCallback firebaseCallback){
         StorageReference reference = mstorageRef.child("profile_images");
         reference.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -206,18 +281,15 @@ public class FireBaseClass {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                System.out.print("Didnot upload");
+                Toast.makeText(activity,"Could not upload the photo!",Toast.LENGTH_SHORT).show();
+                firebaseCallback.upload_done(false);
             }
         });
     }
 
     public boolean CheckInternetConnection() {
-        try {
-            final InetAddress address = InetAddress.getByName("www.google.com");
-            return !address.equals("");
-        } catch (UnknownHostException e) {
-            // Log error
-        }
+        if(AppStatus.getInstance(activity).isOnline())
+            return true;
         return false;
     }
 
