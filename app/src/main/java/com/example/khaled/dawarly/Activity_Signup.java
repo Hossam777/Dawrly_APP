@@ -82,12 +82,12 @@ public class Activity_Signup extends AppCompatActivity {
         }
         if (!email.contains("@")
                 || !email.contains(".")
-                || (email.substring(email.length()-5)).indexOf("@")<(email.substring(email.length()-5)).indexOf("."))
+                || !((email.substring(email.length()-5)).indexOf("@")<(email.substring(email.length()-5)).indexOf(".")))
         {
             Toast.makeText(getApplicationContext(),"Invalid Email",Toast.LENGTH_SHORT).show();
             return;
         }
-        if (pass != repass || pass.length() < 9)
+        if (!pass.equals(repass) || pass.length() < 8)
         {
             Toast.makeText(getApplicationContext(),"Wrong password, must be at least 8 chars",Toast.LENGTH_SHORT).show();
             return;
@@ -124,6 +124,7 @@ public class Activity_Signup extends AppCompatActivity {
         user.setList("");
         int age =  Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(bYear);
         user.setAge(age);
+        user.setGender(gender);
         user.setRate((float) 2.5);
         user.setBan_Status(false);
         user.setMobile(mobile);
