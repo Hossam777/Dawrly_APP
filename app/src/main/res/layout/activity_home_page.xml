@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
         <Button
+            android:onClick="show_items"
             android:textStyle="bold"
             android:layout_marginTop="100dp"
             android:layout_marginLeft="40dp"
@@ -22,6 +23,7 @@
             android:textSize="35dp"
             android:fontFamily="casual"/>
         <Button
+            android:onClick="post_item"
             android:textStyle="bold"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="40dp"
@@ -33,6 +35,7 @@
             android:textSize="35dp"
             android:fontFamily="casual"/>
         <Button
+            android:onClick="my_list"
             android:textStyle="bold"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="40dp"
