@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.khaled.dawarly.Controller.FireBaseClass;
+import com.example.khaled.dawarly.Entities.Admin;
 import com.example.khaled.dawarly.Entities.Item;
 import com.example.khaled.dawarly.Entities.Report;
 import com.example.khaled.dawarly.Entities.User;
@@ -29,10 +30,8 @@ public class Activity_Login extends AppCompatActivity {
 
         fireBaseClass = new FireBaseClass(this);
         mAuth = FirebaseAuth.getInstance();
-        mail = (EditText)findViewById(R.id.emailogin);
-        password = (EditText)findViewById(R.id.passwordlogin);
-
-        //Picasso.get().load(items.get(i).img).into(image); to download image using url
+        mail = findViewById(R.id.emailogin);
+        password = findViewById(R.id.passwordlogin);
 
     }
 
@@ -92,6 +91,9 @@ public class Activity_Login extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
             return;
         }
+        Admin admin = new Admin();
+        if(admin.check_if_Admin(mail.getText().toString(),password.getText().toString()))
+            startActivity(new Intent(getApplicationContext(),Activity_adminHome.class));
         if(mail.getText().equals("") || password.getText().equals(""))
         {
             Toast.makeText(getApplicationContext(),"Please write mail and password",Toast.LENGTH_SHORT).show();

@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Show_Items">
+    tools:context=".Activity_Items_of_User">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <Spinner
-        android:id="@+id/showitem_Category"
+    <EditText
+        android:id="@+id/user_mail"
+        android:gravity="center"
+        android:textSize="@dimen/_15sdp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <ListView
-        android:id="@+id/items_listview"
+        android:id="@+id/user_item_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="0dp"
+        android:layout_weight="9">
 
     </ListView>
     </LinearLayout>

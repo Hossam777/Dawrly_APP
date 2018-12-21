@@ -170,7 +170,77 @@ public class FireBaseClass {
                                 item.setPictureurl(document.getData().get("Pic").toString());
                             if(document.getData().get("Quiz") != null)
                                 item.setQuiz(document.getData().get("Quiz").toString());
+                            if(document.getData().get("Email") != null)
+                                item.setEmail(document.getData().get("Email").toString());
                             items.add(item);
+                        }
+                        firebaseCallback.getitems(items);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(activity,"failed",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void LoadItemswithIDS(final ArrayList<String> ids, final FirebaseCallback firebaseCallback){
+        final ArrayList<Item>items = new ArrayList<>();
+        db.collection("ITEMS").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for(DocumentSnapshot document : task.getResult()){
+                            if(ids.contains(document.getId())){
+                            final Item item = new Item();
+                            item.setItemid(document.getId());
+                            if(document.getData().get("Name") != null)
+                                item.setName(document.getData().get("Name").toString());
+                            if(document.getData().get("Desc") != null)
+                                item.setDescription(document.getData().get("Desc").toString());
+                            if(document.getData().get("Cat") != null)
+                                item.setCategory(document.getData().get("Cat").toString());
+                            if(document.getData().get("Pic") != null)
+                                item.setPictureurl(document.getData().get("Pic").toString());
+                            if(document.getData().get("Quiz") != null)
+                                item.setQuiz(document.getData().get("Quiz").toString());
+                            if(document.getData().get("Email") != null)
+                                item.setEmail(document.getData().get("Email").toString());
+                            items.add(item);
+                            }
+                        }
+                        firebaseCallback.getitems(items);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(activity,"failed",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void LoadItemsofUser(final String mail, final FirebaseCallback firebaseCallback){
+        final ArrayList<Item>items = new ArrayList<>();
+        db.collection("ITEMS").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for(DocumentSnapshot document : task.getResult()){
+                            if(mail.equals(document.getData().get("Email").toString())){
+                                final Item item = new Item();
+                                item.setItemid(document.getId());
+                                if(document.getData().get("Name") != null)
+                                    item.setName(document.getData().get("Name").toString());
+                                if(document.getData().get("Desc") != null)
+                                    item.setDescription(document.getData().get("Desc").toString());
+                                if(document.getData().get("Cat") != null)
+                                    item.setCategory(document.getData().get("Cat").toString());
+                                if(document.getData().get("Pic") != null)
+                                    item.setPictureurl(document.getData().get("Pic").toString());
+                                if(document.getData().get("Quiz") != null)
+                                    item.setQuiz(document.getData().get("Quiz").toString());
+                                if(document.getData().get("Email") != null)
+                                    item.setEmail(document.getData().get("Email").toString());
+                                items.add(item);
+                            }
                         }
                         firebaseCallback.getitems(items);
                     }
@@ -191,8 +261,18 @@ public class FireBaseClass {
                 itemdata.put("Name",item.getName());
                 itemdata.put("Quiz",item.getQuiz().getQuestions_toString());
                 itemdata.put("Pic",uri);
-                db.collection("ITEMS").add(itemdata);
-                firebaseCallback.upload_done(true);
+                itemdata.put("Email",item.getEmail());
+                db.collection("ITEMS").add(itemdata).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        firebaseCallback.upload_done(true);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        firebaseCallback.upload_done(false);
+                    }
+                });
             }
             @Override
             public void upload_done(boolean bool) {
@@ -249,16 +329,36 @@ public class FireBaseClass {
                                     report.setEmail(document.getData().get("Email").toString());
                                 if(document.getData().get("Description") != null)
                                     report.setDescription(document.getData().get("Description").toString());
+                                if(document.getData().get("PostID") != null)
+                                    report.setPostID(document.getData().get("PostID").toString());
                                 reports.add(report);
                 }
                         firebaseCallback.getreports(reports);
             }
         });
     }
+    public void DeleteReport(String Rid,final FirebaseCallback firebaseCallback){
+        db.collection("REPORTS")
+                .document(Rid)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        firebaseCallback.upload_done(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        firebaseCallback.upload_done(false);
+                    }
+                });
+    }
     public void UploadReport(Report report,final FirebaseCallback firebaseCallback){
         HashMap<String,String> reportdata = new HashMap<>();
         reportdata.put("Email",report.getEmail());
         reportdata.put("Description",report.getDescription());
+        reportdata.put("PostID",report.getPostID());
         db.collection("REPORTS").add(reportdata).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
