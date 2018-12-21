@@ -14,7 +14,7 @@ public class User {
     private boolean Ban_Status;
 
     public User(){
-
+        current_user = null;
     }
     public void setUser(String name,String password,String list,String email,String mobile,String gender,int age,float rate,boolean ban_Status){
         Name = name;

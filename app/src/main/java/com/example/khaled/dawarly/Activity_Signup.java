@@ -14,6 +14,7 @@ import com.example.khaled.dawarly.Entities.Report;
 import com.example.khaled.dawarly.Entities.User;
 import com.google.android.gms.common.util.NumberUtils;
 import com.google.android.gms.flags.impl.DataUtils;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,15 +23,18 @@ import io.opencensus.internal.StringUtil;
 
 public class Activity_Signup extends AppCompatActivity {
 
-    RadioButton female,male;
-    EditText fname,sname,mail,password,repassword,emobile,day,month,year;
-    FireBaseClass fireBaseClass ;
+    private RadioButton female,male;
+    private EditText fname,sname,mail,password,repassword,emobile,day,month,year;
+    private FireBaseClass fireBaseClass ;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         fireBaseClass = new FireBaseClass(this);
+        mAuth = FirebaseAuth.getInstance();
 
         fname = (EditText)findViewById(R.id.firstname);
         sname = (EditText)findViewById(R.id.secondname);
@@ -133,6 +137,7 @@ public class Activity_Signup extends AppCompatActivity {
             public void upload_done(boolean bool) {
                 if(bool){
                     Toast.makeText(getApplicationContext(),"Signed up done",Toast.LENGTH_SHORT).show();
+                    mAuth.createUserWithEmailAndPassword(user.getEmail(),user.getPassword());
                     user.setCurrent_user(user);
                     startActivity(new Intent(getApplicationContext(),Activity_HomePage.class));
                 }

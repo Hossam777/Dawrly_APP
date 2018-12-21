@@ -50,7 +50,7 @@ public class FireBaseClass {
     }
 
 
-    public void LoadUser(String mail,String Password,final FirebaseCallback firebaseCallback){
+    public void LoadUser(String mail,final FirebaseCallback firebaseCallback){
         DocumentReference docRef = db.collection("USERS").document(mail);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
