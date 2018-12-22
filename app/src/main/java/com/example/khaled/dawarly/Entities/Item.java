@@ -9,11 +9,15 @@ public class Item {
     private String  Pictureurl;
     private String Name;
     private String Description;
+    private String Email;
     private Quiz quiz;
+    public static Item posting_item;
+    public static Item showing_item;
     public Item(){
-
+        posting_item = null;
+        showing_item = null;
     }
-    public void setItem(String name,String category,String description,Uri picture){
+    public void setItem(String name, String category, String description, Uri picture){
         Name = name;
         Category = category;
         Description = description;
@@ -22,11 +26,13 @@ public class Item {
     public void setCategory(String category){Category = category;}
     public void setItemid(String itemid){Itemid = itemid;}
     public void setName(String name){Name = name;}
+    public void setEmail(String e){Email = e;}
     public void setQuiz(String squiz){quiz = new Quiz(squiz.split(";")); }
     public void setPicture(Uri picture){Picture = picture;}
     public void setPictureurl(String picture){Pictureurl = picture;}
     public void setDescription(String description){Description = description;}
     public String getName(){return Name;}
+    public String getEmail(){return Email;}
     public String getCategory(){return Category;}
     public String getDescription(){return Description;}
     public String getItemid(){return Itemid;}

@@ -41,11 +41,15 @@
             android:layout_height="wrap_content"
             android:textAlignment="center">
             <EditText
+                android:textColorHint="#000"
+                android:textColor="#fff"
                 android:id="@+id/firstname"
                 android:layout_width="170dp"
                 android:layout_height="50dp"
                 android:hint="First name"/>
             <EditText
+                android:textColorHint="#000"
+                android:textColor="#fff"
                 android:id="@+id/secondname"
                 android:layout_width="170dp"
                 android:layout_height="50dp"
@@ -53,23 +57,31 @@
         </LinearLayout>
 
             <EditText
+                android:textColorHint="#000"
+                android:textColor="#fff"
                 android:id="@+id/emailsignu"
                 android:layout_width="340dp"
                 android:layout_height="50dp"
                 android:hint="Email 'ex abcd@efg.hik'"/>
         <EditText
+            android:textColorHint="#000"
+            android:textColor="#fff"
             android:id="@+id/passwordsignu"
             android:layout_width="340dp"
             android:layout_height="50dp"
             android:hint="Password"
             android:inputType="textPassword"/>
         <EditText
+            android:textColorHint="#000"
+            android:textColor="#fff"
             android:id="@+id/repasswordsignu"
             android:layout_width="340dp"
             android:layout_height="50dp"
             android:hint="re write Password"
             android:inputType="textPassword"/>
         <EditText
+            android:textColorHint="#000"
+            android:textColor="#fff"
         android:id="@+id/phone_number"
         android:layout_width="340dp"
         android:layout_height="50dp"
@@ -79,21 +91,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:textStyle="bold"
+                android:textColorHint="#000"
+                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BirthDay"/>
             <EditText
+                android:textColorHint="#000"
+                android:textColor="#fff"
                 android:id="@+id/day"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:hint="Day"
                 android:layout_marginLeft="10dp"/>
             <TextView
+                android:textColorHint="#000"
+                android:textColor="#fff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="/"
                 android:textSize="25dp"/>
             <EditText
+                android:textColorHint="#000"
+                android:textColor="#fff"
                 android:id="@+id/month"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -101,11 +122,15 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
             <TextView
+                android:textColorHint="#000"
+                android:textColor="#fff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="/"
                 android:textSize="25dp"/>
             <EditText
+                android:textColorHint="#000"
+                android:textColor="#fff"
                 android:id="@+id/year"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
@@ -113,31 +138,6 @@
                 android:layout_marginLeft="10dp"/>
 
         </LinearLayout>
-        <RadioGroup
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender"/>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RadioButton
-                    android:id="@+id/male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male" />
-
-                <RadioButton
-                    android:id="@+id/female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Female" />
-            </LinearLayout>
-        </RadioGroup>
         <Button
         android:onClick="login"
         android:layout_width="wrap_content"
@@ -149,5 +149,35 @@
         android:fontFamily="casual"
         android:background="@drawable/but"
         />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:textColorHint="#000"
+                android:textColor="#fff"
+                android:id="@+id/male"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:textColorHint="#000"
+                android:textColor="#fff"
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+        </LinearLayout>
+        <RadioGroup
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </RadioGroup>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

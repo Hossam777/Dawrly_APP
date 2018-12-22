@@ -4,6 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Post_Item">
+    tools:context=".Activity_Post_Item"
+    android:background="@color/backgroundColor">
 
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:padding="@dimen/_20sdp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/signuotext"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/_7sdp"
+        android:layout_height="wrap_content"
+        android:text="Post"
+        android:textColor="#fff"
+        android:fontFamily="casual"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="50dp"
+        android:textSize="40dp"
+        android:background="@drawable/but"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/_25sdp"/>
+        
+        <EditText
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:hint="Name"
+            android:background="@drawable/text_input_background"
+            android:paddingLeft="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:inputType="text"/>
+        <Spinner
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:background="@drawable/text_input_background"
+            android:id="@+id/item_Category"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_5sdp"
+            android:inputType="text"/>
+        <EditText
+            android:background="@drawable/text_input_background"
+            android:id="@+id/item_desc"
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp"
+            android:textSize="@dimen/_13sdp"
+            android:hint="Description"
+            android:gravity="left|top"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:inputType="textMultiLine"/>
+        <Button
+            android:onClick="capture_image"
+            android:fontFamily="casual"
+            android:background="@drawable/but"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/_150sdp"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="Capture Imgae"
+            android:layout_height="@dimen/_50sdp" />
+        <ImageView
+            android:id="@+id/selectediv"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp" />
+        <Button
+            android:onClick="advance_toquiz"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="casual"
+            android:background="@drawable/but"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/_150sdp"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_15sdp"
+            android:text="Submit"
+            android:layout_height="@dimen/_50sdp" />
+    </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

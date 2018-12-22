@@ -14,7 +14,7 @@ public class User {
     private boolean Ban_Status;
 
     public User(){
-
+        current_user = null;
     }
     public void setUser(String name,String password,String list,String email,String mobile,String gender,int age,float rate,boolean ban_Status){
         Name = name;
@@ -27,7 +27,7 @@ public class User {
         Rate = rate;
         Ban_Status = ban_Status;
     }
-    private User current_user;
+    public static User current_user;
 
     public void setCurrent_user(User current_user) {this.current_user = current_user; }
     public User getCurrent_user() {return  current_user; }
@@ -44,6 +44,7 @@ public class User {
 
     public void setName(String name){Name = name;}
     public void setList(String list){List = list;}
+    public void addtoList(String li){List += li;}
     public void setPassword(String password){Password = password;}
     public void setEmail(String email){Email = email;}
     public void setMobile(String mobile){Mobile = mobile;}

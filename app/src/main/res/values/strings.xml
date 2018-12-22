@@ -3,4 +3,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="category_list">
+        <item>Mobile</item>
+        <item>Clothes</item>
+        <item>Accessories</item>
+        <item>IDs</item>
+    </string-array>
+    <string-array name="category_list2">
+        <item>ALL</item>
+        <item>Mobile</item>
+        <item>Clothes</item>
+        <item>Accessories</item>
+        <item>IDs</item>
+    </string-array>
 </resources>
