@@ -30,6 +30,8 @@
             android:layout_marginBottom="@dimen/_25sdp"/>
 
         <EditText
+            android:textColorHint="#fff"
+            android:textColor="#fff"
             android:background="@drawable/text_input_background"
             android:id="@+id/report_desc"
             android:layout_width="match_parent"

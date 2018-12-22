@@ -55,16 +55,16 @@ public class Activity_Signup extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
             return;
         }
-    String firstname = fname.getText().toString();
-    String secondname = sname.getText().toString();
-    String email = mail.getText().toString();
-    String pass = password.getText().toString();
-    String repass = repassword.getText().toString();
-    String mobile = emobile.getText().toString();
-    String bDay = day.getText().toString();
-    String bMonth = month.getText().toString();
-    String bYear = year.getText().toString();
-    String gender ="";
+        String firstname = fname.getText().toString();
+        String secondname = sname.getText().toString();
+        String email = mail.getText().toString();
+        String pass = password.getText().toString();
+        String repass = repassword.getText().toString();
+        String mobile = emobile.getText().toString();
+        String bDay = day.getText().toString();
+        String bMonth = month.getText().toString();
+        String bYear = year.getText().toString();
+        String gender ="";
         if(male.isChecked())
         {
             gender="Male";

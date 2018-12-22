@@ -92,8 +92,10 @@ public class Activity_Login extends AppCompatActivity {
             return;
         }
         Admin admin = new Admin();
-        if(admin.check_if_Admin(mail.getText().toString(),password.getText().toString()))
+        if(admin.check_if_Admin(mail.getText().toString(),password.getText().toString())){
             startActivity(new Intent(getApplicationContext(),Activity_adminHome.class));
+            return;
+        }
         if(mail.getText().equals("") || password.getText().equals(""))
         {
             Toast.makeText(getApplicationContext(),"Please write mail and password",Toast.LENGTH_SHORT).show();

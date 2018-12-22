@@ -34,6 +34,11 @@ public class Activity_Report_User extends AppCompatActivity {
             return;
         }
         Report.current_report.setDescription(report_desc.getText().toString());
+        if(!fireBaseClass.CheckInternetConnection())
+        {
+            Toast.makeText(getApplicationContext(),"No Internet Connection!",Toast.LENGTH_SHORT).show();
+            return;
+        }
         fireBaseClass.UploadReport(Report.current_report, new FireBaseClass.FirebaseCallback() {
             @Override
             public void upload_done(boolean bool) {

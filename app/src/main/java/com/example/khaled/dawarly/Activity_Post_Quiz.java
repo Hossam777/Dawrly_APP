@@ -88,7 +88,10 @@ public class Activity_Post_Quiz extends AppCompatActivity {
         quiz += q5.getText().toString() + ":" + a1q5.getText().toString() + "," + a2q5.getText().toString() + "," + a3q5.getText().toString() + ";" ;
         Item.posting_item.setQuiz(quiz);
         if(!fireBaseClass.CheckInternetConnection())
-            Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
+        {
+            Toast.makeText(getApplicationContext(),"No Internet Connection!",Toast.LENGTH_SHORT).show();
+            return;
+        }
         fireBaseClass.UploadItem(Item.posting_item, new FireBaseClass.FirebaseCallback() {
             @Override
             public void upload_done(boolean bool) {

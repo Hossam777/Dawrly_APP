@@ -98,6 +98,11 @@ public class Activity_Open_Quiz extends AppCompatActivity {
             if(FinalAnswers[i].equals(Questions[i][1]))
                 degree += 20;
         }
+        if(!fireBaseClass.CheckInternetConnection())
+        {
+            Toast.makeText(getApplicationContext(),"No Internet Connection!",Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(degree < 80)
         {
             User.current_user.addtoList(currItem.getItemid() + "0;");

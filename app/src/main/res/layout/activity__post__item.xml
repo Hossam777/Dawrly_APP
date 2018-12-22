@@ -33,6 +33,8 @@
         android:layout_marginBottom="@dimen/_25sdp"/>
         
         <EditText
+            android:textColorHint="#fff"
+            android:textColor="#fff"
             android:id="@+id/item_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
@@ -42,6 +44,8 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:inputType="text"/>
         <Spinner
+            android:textColorHint="#fff"
+            android:textColor="#fff"
             android:background="@drawable/text_input_background"
             android:id="@+id/item_Category"
             android:layout_width="match_parent"
@@ -52,6 +56,8 @@
         <EditText
             android:background="@drawable/text_input_background"
             android:id="@+id/item_desc"
+            android:textColorHint="#fff"
+            android:textColor="#fff"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120sdp"
             android:textSize="@dimen/_13sdp"

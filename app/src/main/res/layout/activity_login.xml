@@ -38,6 +38,8 @@
             android:gravity="center"
             android:layout_marginBottom="50dp"/>
         <EditText
+            android:textColorHint="#fff"
+            android:textColor="#fff"
             android:id="@+id/emailogin"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
@@ -55,6 +57,8 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/passwordlogin"
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
@@ -73,6 +77,8 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:textColorHint="#fff"
+                        android:textColor="#fff"
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -84,6 +90,7 @@
                     <Button
                         android:onClick="signup"
                         android:id="@+id/button"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#00000000"

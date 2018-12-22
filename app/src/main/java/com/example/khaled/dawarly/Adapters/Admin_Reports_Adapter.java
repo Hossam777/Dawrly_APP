@@ -70,7 +70,10 @@ public class Admin_Reports_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if(!fireBaseClass.CheckInternetConnection())
+                {
+                    Toast.makeText(activity,"No Internet Connection!",Toast.LENGTH_SHORT).show();
                     return;
+                }
                 fireBaseClass.LoadUser(reports.get(position).getEmail(), new FireBaseClass.FirebaseCallback() {
                     @Override
                     public void upload_done(boolean bool) {
@@ -103,6 +106,11 @@ public class Admin_Reports_Adapter extends BaseAdapter {
         rdeleteuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!fireBaseClass.CheckInternetConnection())
+                {
+                    Toast.makeText(activity,"No Internet Connection!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setMessage("Are you sure to delete")
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
@@ -131,6 +139,11 @@ public class Admin_Reports_Adapter extends BaseAdapter {
                                     @Override
                                     public void getuser(User user) {
                                         user.setBan_Status(true);
+                                        if(!fireBaseClass.CheckInternetConnection())
+                                        {
+                                            Toast.makeText(activity,"No Internet Connection!",Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
                                         fireBaseClass.UpdateUser(user, new FireBaseClass.FirebaseCallback() {
                                             @Override
                                             public void upload_done(boolean bool) {
@@ -181,6 +194,11 @@ public class Admin_Reports_Adapter extends BaseAdapter {
                 builder.setMessage("Are you sure to delete")
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                if(!fireBaseClass.CheckInternetConnection())
+                                {
+                                    Toast.makeText(activity,"No Internet Connection!",Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
                                 fireBaseClass.DeleteReport(reports.get(position).getID(), new FireBaseClass.FirebaseCallback() {
                                     @Override
                                     public void upload_done(boolean bool) {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.khaled.dawarly.Adapters.Admin_Reports_Adapter;
 import com.example.khaled.dawarly.Controller.FireBaseClass;
@@ -27,6 +28,11 @@ public class Activity_adminHome extends AppCompatActivity {
         listView = findViewById(R.id.adminlist);
         fireBaseClass = new FireBaseClass(this);
         activity = this;
+        if(!fireBaseClass.CheckInternetConnection())
+        {
+            Toast.makeText(getApplicationContext(),"No Internet Connection!",Toast.LENGTH_SHORT).show();
+            return;
+        }
         fireBaseClass.LoadReports(new FireBaseClass.FirebaseCallback() {
             @Override
             public void upload_done(boolean bool) {

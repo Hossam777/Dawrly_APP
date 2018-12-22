@@ -36,11 +36,14 @@
             <TextView
                 android:text="Plase choose the correct answer of every question"
                 android:textSize="@dimen/_10sdp"
+                android:textColor="#fff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:padding="@dimen/_10sdp"
                 android:id="@+id/rq1"
+                android:textColorHint="#fff"
+                android:textColor="#fff"
                 android:textSize="@dimen/_15sdp"
                 android:hint="Question 1"
                 android:paddingLeft="@dimen/_5sdp"
@@ -51,18 +54,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq1a1"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 1"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq1a2"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 2"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq1a3"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
@@ -71,6 +80,8 @@
                 </RadioGroup>
 
             <TextView
+                android:textColorHint="#fff"
+                android:textColor="#fff"
                 android:padding="@dimen/_10sdp"
                 android:id="@+id/rq2"
                 android:textSize="@dimen/_15sdp"
@@ -83,18 +94,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq2a1"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 1"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq2a2"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 2"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq2a3"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
@@ -102,6 +119,8 @@
                     android:layout_height="wrap_content" />
             </RadioGroup>
             <TextView
+                android:textColorHint="#fff"
+                android:textColor="#fff"
                 android:padding="@dimen/_10sdp"
                 android:id="@+id/rq3"
                 android:textSize="@dimen/_15sdp"
@@ -114,18 +133,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq3a1"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 1"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq3a2"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 2"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq3a3"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
@@ -145,18 +170,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq4a1"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 1"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq4a2"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 2"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq4a3"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
@@ -164,6 +195,8 @@
                     android:layout_height="wrap_content" />
             </RadioGroup>
             <TextView
+                android:textColorHint="#fff"
+                android:textColor="#fff"
                 android:padding="@dimen/_10sdp"
                 android:id="@+id/rq5"
                 android:textSize="@dimen/_15sdp"
@@ -176,18 +209,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq5a1"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 1"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq5a2"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"
                     android:hint="Answer 2"
                     android:layout_height="wrap_content" />
                 <RadioButton
+                    android:textColorHint="#fff"
+                    android:textColor="#fff"
                     android:id="@+id/rq5a3"
                     android:layout_margin="@dimen/_1sdp"
                     android:layout_width="wrap_content"

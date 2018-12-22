@@ -86,6 +86,11 @@ public class MyList_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (states.get(position)){
+                    if(!fireBaseClass.CheckInternetConnection())
+                    {
+                        Toast.makeText(activity,"No Internet Connection!",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     fireBaseClass.LoadUser(items.get(position).getEmail(), new FireBaseClass.FirebaseCallback() {
                         @Override
                         public void upload_done(boolean bool) {

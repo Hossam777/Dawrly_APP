@@ -56,6 +56,11 @@ public class Activity_Show_Items extends AppCompatActivity {
         fireBaseClass = new FireBaseClass(this);
         ThisActivity = this;
         listView = (ListView)findViewById(R.id.items_listview);
+        if(!fireBaseClass.CheckInternetConnection())
+        {
+            Toast.makeText(getApplicationContext(),"No Internet Connection!",Toast.LENGTH_SHORT).show();
+            return;
+        }
         fireBaseClass.LoadItems(new FireBaseClass.FirebaseCallback() {
             @Override
             public void upload_done(boolean bool) {

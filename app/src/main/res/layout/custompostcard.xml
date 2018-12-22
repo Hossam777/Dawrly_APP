@@ -48,6 +48,8 @@
         </LinearLayout>
     </LinearLayout>
     <EditText
+        android:textColorHint="#000"
+        android:textColor="#fff"
         android:layout_marginTop="@dimen/_5sdp"
         android:background="#00000000"
         android:id="@+id/quiz_sheet"
