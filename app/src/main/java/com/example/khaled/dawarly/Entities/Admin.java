@@ -9,13 +9,13 @@ public class Admin {
         Emails = new ArrayList<>();
         Passwords = new ArrayList<>();
 
-        Emails.add("hossam@gmail.com");
+        Emails.add("Hossam");
         Passwords.add("hossam");
-        Emails.add("hassan@gmail.com");
+        Emails.add("Hassan");
         Passwords.add("hassan");
-        Emails.add("doaa@gmail.com");
+        Emails.add("Doaa");
         Passwords.add("doaa");
-        Emails.add("khaled@gmail.com");
+        Emails.add("Khaled");
         Passwords.add("khaled");
     }
     public Boolean check_if_Admin(String mail,String password){
