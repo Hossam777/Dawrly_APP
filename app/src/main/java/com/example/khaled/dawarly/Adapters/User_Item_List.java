@@ -61,16 +61,16 @@ public class User_Item_List extends BaseAdapter {
         TextView cpidesc = v.findViewById(R.id.cpidesc);
         TextView quiz_sheet = v.findViewById(R.id.quiz_sheet);
 
-        Picasso.get().load(items.get(position).getPicture()).into(cpiimage);
+        Picasso.get().load(items.get(position).getPictureurl()).into(cpiimage);
         cpiname.setText(items.get(position).getName());
         cpidesc.setText(items.get(position).getDescription());
-        String tmp = "";
+        String tmp = "Quiz : <br>";
         String tmp2[][] = items.get(position).getQuiz().getQestions();
         for(int i=0;i<5;i++)
         {
-            tmp += tmp2[i][0] + " : <br>" ;
-            tmp += tmp2[i][1] + "<br>" ;
-            tmp += tmp2[i][2] + "<br>" ;
+            tmp += tmp2[i][0] + " : ";
+            tmp += tmp2[i][1] + "  , ";
+            tmp += tmp2[i][2] + "  , ";
             tmp += tmp2[i][3] + "<br>" ;
         }
         quiz_sheet.setText(Html.fromHtml(tmp));

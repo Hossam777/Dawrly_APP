@@ -26,7 +26,6 @@ public class Activity_Signup extends AppCompatActivity {
     private RadioButton female,male;
     private EditText fname,sname,mail,password,repassword,emobile,day,month,year;
     private FireBaseClass fireBaseClass ;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class Activity_Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         fireBaseClass = new FireBaseClass(this);
-        mAuth = FirebaseAuth.getInstance();
 
         fname = (EditText)findViewById(R.id.firstname);
         sname = (EditText)findViewById(R.id.secondname);
@@ -136,8 +134,6 @@ public class Activity_Signup extends AppCompatActivity {
             @Override
             public void upload_done(boolean bool) {
                 if(bool){
-                    Toast.makeText(getApplicationContext(),"Signed up done",Toast.LENGTH_SHORT).show();
-                    mAuth.createUserWithEmailAndPassword(user.getEmail(),user.getPassword());
                     user.setCurrent_user(user);
                     startActivity(new Intent(getApplicationContext(),Activity_HomePage.class));
                 }

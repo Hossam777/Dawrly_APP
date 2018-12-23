@@ -158,6 +158,8 @@
                     android:layout_height="wrap_content" />
             </RadioGroup>
             <TextView
+                android:textColorHint="#fff"
+                android:textColor="#fff"
                 android:padding="@dimen/_10sdp"
                 android:id="@+id/rq4"
                 android:textSize="@dimen/_15sdp"

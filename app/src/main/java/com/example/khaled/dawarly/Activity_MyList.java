@@ -32,14 +32,16 @@ public class Activity_MyList extends AppCompatActivity {
         fireBaseClass = new FireBaseClass(this);
         if(fireBaseClass.CheckInternetConnection())
         {
+            if(user.getList().length() > 0){
             String arrlist[] = user.getList().split(";");
-            if(arrlist.length>0)
-            {
-                ArrayList<String>arrayList_IDs = new ArrayList<>();
-                final ArrayList<Boolean>arrayList_status = new ArrayList<>();
-                for(int i=0;i<arrlist.length;i++){
-                    arrayList_IDs.add(arrlist[i].substring(0,arrlist.length-1));
-                    arrayList_status.add(Boolean.parseBoolean(arrlist[i].substring(0,arrlist.length-1)));
+                ArrayList<String> arrayList_IDs = new ArrayList<>();
+                final ArrayList<Boolean> arrayList_status = new ArrayList<>();
+                for (int i = 0; i < arrlist.length; i++) {
+                    arrayList_IDs.add(arrlist[i].substring(0, arrlist[i].length() - 1));
+                    if (arrlist[i].charAt(arrlist[i].length() - 1) == '1')
+                        arrayList_status.add(true);
+                    else
+                        arrayList_status.add(false);
                 }
                 fireBaseClass.LoadItemswithIDS(arrayList_IDs, new FireBaseClass.FirebaseCallback() {
                     @Override
@@ -54,7 +56,7 @@ public class Activity_MyList extends AppCompatActivity {
 
                     @Override
                     public void getitems(ArrayList<Item> items) {
-                        mylistview.setAdapter(new MyList_Adapter(activity,items,arrayList_status));
+                        mylistview.setAdapter(new MyList_Adapter(activity, items, arrayList_status));
                     }
 
                     @Override

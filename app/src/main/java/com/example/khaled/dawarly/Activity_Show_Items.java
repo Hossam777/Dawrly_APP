@@ -18,7 +18,7 @@ import com.example.khaled.dawarly.Entities.User;
 
 import java.util.ArrayList;
 
-public class Activity_Show_Items extends AppCompatActivity {
+public class Activity_Show_Items extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ListView listView;
     FireBaseClass fireBaseClass;
@@ -30,24 +30,16 @@ public class Activity_Show_Items extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__show__items);
+
         Titems = null;
         showitem_Category = findViewById(R.id.showitem_Category);
+        showitem_Category.setOnItemSelectedListener(this);
+        fireBaseClass = new FireBaseClass(this);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.category_list2, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         showitem_Category.setAdapter(adapter);
-        showitem_Category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (Titems != null) {
-                    listView.setAdapter(new Show_Items_Adapter(ThisActivity, Titems, showitem_Category.getSelectedItem().toString()));
-                } else{
-                    Toast.makeText(getApplicationContext(), "Please wait untill load finish", Toast.LENGTH_SHORT).show();
-                    showitem_Category.setSelection(0);
-            }
-            }
-        });
         if(!fireBaseClass.CheckInternetConnection())
         {
             Toast.makeText(getApplicationContext(), "No Internet Connection!", Toast.LENGTH_SHORT).show();
@@ -88,5 +80,20 @@ public class Activity_Show_Items extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (Titems != null) {
+            listView.setAdapter(new Show_Items_Adapter(ThisActivity, Titems, showitem_Category.getSelectedItem().toString()));
+        } else{
+            Toast.makeText(getApplicationContext(), "Please wait untill load finish", Toast.LENGTH_SHORT).show();
+            showitem_Category.setSelection(0);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

@@ -50,7 +50,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="right"
                     android:background="@drawable/but"
-                    android:text="quiz"
+                    android:text="Contacts"
                     android:textColor="#fff"/>
                 <Button
                     android:id="@+id/mlreport"

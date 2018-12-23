@@ -34,7 +34,7 @@ public class Show_Items_Adapter extends BaseAdapter {
         items = i;
         l = (LayoutInflater)x.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if(Category != null)
+        if(Category != null && !Category.equals("ALL"))
         {
             ArrayList<Item>tmpitems = new ArrayList<>();
             for(int j=0;j<items.size();j++){
@@ -70,7 +70,7 @@ public class Show_Items_Adapter extends BaseAdapter {
         Button pireport = v.findViewById(R.id.pireport);
         Button piquiz = v.findViewById(R.id.piquiz);
 
-        Picasso.get().load(items.get(position).getPicture()).into(piimage);
+        Picasso.get().load(items.get(position).getPictureurl()).into(piimage);
         piname.setText(items.get(position).getName());
         pidesc.setText(items.get(position).getDescription());
         pireport.setOnClickListener(new View.OnClickListener() {
@@ -80,14 +80,21 @@ public class Show_Items_Adapter extends BaseAdapter {
                     Toast.makeText(activity,"You must login first",Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(User.current_user.getList().length()>1) {
                 String arr[] = User.current_user.getList().split(";");
-                for(int i=0;i<arr.length;i++)
-                {
-                    if(arr[i].substring(0,arr[i].length()-1).equals(items.get(position).getItemid()))
+                    for(int i=0;i<arr.length;i++)
                     {
-                        Toast.makeText(activity,"This item have been saved to your list",Toast.LENGTH_SHORT).show();
-                        return;
+                        if(arr[i].substring(0,arr[i].length()-1).equals(items.get(position).getItemid()))
+                        {
+                            Toast.makeText(activity,"This item have been saved to your list",Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
+                }
+                if(User.current_user.getEmail().equals(items.get(position).getEmail()))
+                {
+                    Toast.makeText(activity,"This is your post enta nset wla eh",Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 Report report = new Report();
                 report.setPostID(items.get(position).getItemid());
@@ -103,17 +110,22 @@ public class Show_Items_Adapter extends BaseAdapter {
                     Toast.makeText(activity,"You must login first",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String arr[] = User.current_user.getList().split(";");
-                for(int i=0;i<arr.length;i++)
-                {
-                    if(arr[i].substring(0,arr[i].length()-1).equals(items.get(position).getItemid()))
-                    {
-                        Toast.makeText(activity,"This item have been saved to your list",Toast.LENGTH_SHORT).show();
-                        return;
+                if(User.current_user.getList().length()>1) {
+                    String arr[] = User.current_user.getList().split(";");
+                    for (int i = 0; i < arr.length; i++) {
+                        if (arr[i].substring(0, arr[i].length() - 1).equals(items.get(position).getItemid())) {
+                            Toast.makeText(activity, "This item have been saved to your list", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
                 }
+                if(User.current_user.getEmail().equals(items.get(position).getEmail()))
+                {
+                    Toast.makeText(activity,"This is your post enta nset wla eh",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Item.showing_item = items.get(position);
-                activity.startActivity(new Intent(activity,Activity_Open_Quiz.class));
+                activity.startActivity(new Intent(activity, Activity_Open_Quiz.class));
             }
         });
 

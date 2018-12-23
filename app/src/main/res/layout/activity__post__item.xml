@@ -44,8 +44,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:inputType="text"/>
         <Spinner
-            android:textColorHint="#fff"
-            android:textColor="#fff"
+            style="@style/mySpinnerItemStyle"
             android:background="@drawable/text_input_background"
             android:id="@+id/item_Category"
             android:layout_width="match_parent"
@@ -75,7 +74,7 @@
             android:textColor="#FFFFFF"
             android:textSize="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:text="Capture Imgae"
+            android:text="Select Image"
             android:layout_height="@dimen/_50sdp" />
         <ImageView
             android:id="@+id/selectediv"

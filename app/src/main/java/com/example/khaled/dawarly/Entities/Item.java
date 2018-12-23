@@ -6,6 +6,7 @@ public class Item {
     private String Itemid;
     private String Category;
     private Uri Picture;
+    private String Picturedurl;
     private String  Pictureurl;
     private String Name;
     private String Description;
@@ -24,6 +25,7 @@ public class Item {
         Picture = picture;
     }
     public void setCategory(String category){Category = category;}
+    public void setPicturedurl(String s){Pictureurl = s;}
     public void setItemid(String itemid){Itemid = itemid;}
     public void setName(String name){Name = name;}
     public void setEmail(String e){Email = e;}

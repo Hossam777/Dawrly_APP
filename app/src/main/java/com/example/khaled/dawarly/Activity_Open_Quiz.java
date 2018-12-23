@@ -21,7 +21,7 @@ public class Activity_Open_Quiz extends AppCompatActivity {
     FireBaseClass fireBaseClass;
     Item currItem;
 
-    TextView q1,q2,q3,q4,q5;
+    TextView qests[];
     RadioButton RBarray[][];
     String Questions[][];
 
@@ -33,9 +33,7 @@ public class Activity_Open_Quiz extends AppCompatActivity {
         fireBaseClass = new FireBaseClass(this);
         currItem = Item.showing_item;
         Questions = currItem.getQuiz().getQestions();
-        q1 = findViewById(R.id.rq1);
-        q2 = findViewById(R.id.rq2);
-        q3 = findViewById(R.id.rq3);
+        qests = new TextView[]{findViewById(R.id.rq1),findViewById(R.id.rq2),findViewById(R.id.rq3),findViewById(R.id.rq4),findViewById(R.id.rq5)};
         RBarray = new RadioButton[][]{
                new RadioButton[]{findViewById(R.id.rq1a1),findViewById(R.id.rq1a2),findViewById(R.id.rq1a3)},
                new RadioButton[]{findViewById(R.id.rq2a1),findViewById(R.id.rq2a2),findViewById(R.id.rq2a3)},
@@ -46,8 +44,8 @@ public class Activity_Open_Quiz extends AppCompatActivity {
         Random r = new Random();
         for(int i=0;i<5;i++)
         {
-            q1.setText(Questions[i][0]);
-            int start = r.nextInt()%3;
+            qests[i].setText(Questions[i][0]);
+            int start = r.nextInt(3);
             RBarray[i][start].setText(Questions[i][1]);
             RBarray[i][(start+1)%3].setText(Questions[i][2]);
             RBarray[i][(start+2)%3].setText(Questions[i][3]);
@@ -57,39 +55,39 @@ public class Activity_Open_Quiz extends AppCompatActivity {
     }
 
     public void Post_quiz_answer(View view) {
-        if( !RBarray[0][0].isChecked() || !RBarray[0][1].isChecked() || !RBarray[0][2].isChecked())
+        if( !RBarray[0][0].isChecked() && !RBarray[0][1].isChecked() && !RBarray[0][2].isChecked())
         {
             Toast.makeText(getApplicationContext(),"Please choose answer for question 1",Toast.LENGTH_SHORT).show();
             return;
         }
-        if( !RBarray[1][0].isChecked() || !RBarray[1][1].isChecked() || !RBarray[1][2].isChecked())
+        if( !RBarray[1][0].isChecked() && !RBarray[1][1].isChecked() && !RBarray[1][2].isChecked())
         {
             Toast.makeText(getApplicationContext(),"Please choose answer for question 2",Toast.LENGTH_SHORT).show();
             return;
         }
-        if( !RBarray[2][0].isChecked() || !RBarray[2][1].isChecked() || !RBarray[2][2].isChecked())
+        if( !RBarray[2][0].isChecked() && !RBarray[2][1].isChecked() && !RBarray[2][2].isChecked())
         {
             Toast.makeText(getApplicationContext(),"Please choose answer for question 3",Toast.LENGTH_SHORT).show();
             return;
         }
-        if( !RBarray[3][0].isChecked() || !RBarray[3][1].isChecked() || !RBarray[3][2].isChecked())
+        if( !RBarray[3][0].isChecked() && !RBarray[3][1].isChecked() && !RBarray[3][2].isChecked())
         {
             Toast.makeText(getApplicationContext(),"Please choose answer for question 4",Toast.LENGTH_SHORT).show();
             return;
         }
-        if( !RBarray[4][0].isChecked() || !RBarray[4][1].isChecked() || !RBarray[4][2].isChecked())
+        if( !RBarray[4][0].isChecked() && !RBarray[4][1].isChecked() && !RBarray[4][2].isChecked())
         {
             Toast.makeText(getApplicationContext(),"Please choose answer for question 5",Toast.LENGTH_SHORT).show();
             return;
         }
         String FinalAnswers[] = new String[5];
-        for(int i = 0;i<3;i++)
+        for(int i = 0;i<5;i++)
         {
             if(RBarray[i][0].isChecked())
                 FinalAnswers[i] = RBarray[i][0].getText().toString();
             if(RBarray[i][1].isChecked())
                 FinalAnswers[i] = RBarray[i][1].getText().toString();
-            if(RBarray[i][1].isChecked())
+            if(RBarray[i][2].isChecked())
                 FinalAnswers[i] = RBarray[i][2].getText().toString();
         }
         int degree = 0;
