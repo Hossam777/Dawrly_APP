@@ -29,12 +29,14 @@ public class Activity_Post_Quiz extends AppCompatActivity {
         fireBaseClass = new FireBaseClass(this);
 
         TextView mytextview = (TextView)findViewById(R.id.textview1);
-        String sourceString = mytextview.getText().toString();
-        mytextview.setText(Html.fromHtml(sourceString));
+        String tmp = "Please fill all Questions and answers <b>informed that the first answer of every question is the correct answer</b>";
+        mytextview.setText(Html.fromHtml(tmp));
 
         q1 = (EditText)findViewById(R.id.q1);
         q2 = (EditText)findViewById(R.id.q2);
         q3 = (EditText)findViewById(R.id.q3);
+        q4 = (EditText)findViewById(R.id.q4);
+        q5 = (EditText)findViewById(R.id.q4);
         a1q1 = (EditText)findViewById(R.id.q1a1);
         a2q1 = (EditText)findViewById(R.id.q1a2);
         a3q1 = (EditText)findViewById(R.id.q1a3);

@@ -24,6 +24,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 
 public class FireBaseClass {
@@ -38,15 +39,17 @@ public class FireBaseClass {
         void getuser(User user);
     }
 
+    FirebaseStorage firebaseStorage;
     private StorageReference mstorageRef ;
     private FirebaseFirestore db ;
     Activity activity;
 
     public FireBaseClass(Activity a)
     {
+        firebaseStorage = FirebaseStorage.getInstance();
         activity = a;
         db = FirebaseFirestore.getInstance();
-        mstorageRef = FirebaseStorage.getInstance().getReference();
+        mstorageRef = firebaseStorage.getReference();
     }
 
 
@@ -60,6 +63,7 @@ public class FireBaseClass {
                     if (document.exists()) {
                         final User user = new User();
                         String userdata = "";
+                        user.setEmail(document.getId());
                         if(document.getData().get("Name") != null)
                             user.setName(document.getData().get("Name").toString());
                         if(document.getData().get("Mobile") != null)
@@ -167,7 +171,7 @@ public class FireBaseClass {
                             if(document.getData().get("Cat") != null)
                                 item.setCategory(document.getData().get("Cat").toString());
                             if(document.getData().get("Pic") != null)
-                                item.setPictureurl(document.getData().get("Pic").toString());
+                                item.setPicturedurl(document.getData().get("Pic").toString());
                             if(document.getData().get("Quiz") != null)
                                 item.setQuiz(document.getData().get("Quiz").toString());
                             if(document.getData().get("Email") != null)
@@ -200,7 +204,7 @@ public class FireBaseClass {
                             if(document.getData().get("Cat") != null)
                                 item.setCategory(document.getData().get("Cat").toString());
                             if(document.getData().get("Pic") != null)
-                                item.setPictureurl(document.getData().get("Pic").toString());
+                                item.setPicturedurl(document.getData().get("Pic").toString());
                             if(document.getData().get("Quiz") != null)
                                 item.setQuiz(document.getData().get("Quiz").toString());
                             if(document.getData().get("Email") != null)
@@ -224,22 +228,24 @@ public class FireBaseClass {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(DocumentSnapshot document : task.getResult()){
-                            if(mail.equals(document.getData().get("Email").toString())){
-                                final Item item = new Item();
-                                item.setItemid(document.getId());
-                                if(document.getData().get("Name") != null)
-                                    item.setName(document.getData().get("Name").toString());
-                                if(document.getData().get("Desc") != null)
-                                    item.setDescription(document.getData().get("Desc").toString());
-                                if(document.getData().get("Cat") != null)
-                                    item.setCategory(document.getData().get("Cat").toString());
-                                if(document.getData().get("Pic") != null)
-                                    item.setPictureurl(document.getData().get("Pic").toString());
-                                if(document.getData().get("Quiz") != null)
-                                    item.setQuiz(document.getData().get("Quiz").toString());
-                                if(document.getData().get("Email") != null)
-                                    item.setEmail(document.getData().get("Email").toString());
-                                items.add(item);
+                            if(document.getData().get("Email") != null){
+                                if(mail.equals(document.getData().get("Email").toString())){
+                                    final Item item = new Item();
+                                    item.setItemid(document.getId());
+                                    if(document.getData().get("Name") != null)
+                                        item.setName(document.getData().get("Name").toString());
+                                    if(document.getData().get("Desc") != null)
+                                        item.setDescription(document.getData().get("Desc").toString());
+                                    if(document.getData().get("Cat") != null)
+                                        item.setCategory(document.getData().get("Cat").toString());
+                                    if(document.getData().get("Pic") != null)
+                                        item.setPicturedurl(document.getData().get("Pic").toString());
+                                    if(document.getData().get("Quiz") != null)
+                                        item.setQuiz(document.getData().get("Quiz").toString());
+                                    if(document.getData().get("Email") != null)
+                                        item.setEmail(document.getData().get("Email").toString());
+                                    items.add(item);
+                                }
                             }
                         }
                         firebaseCallback.getitems(items);
@@ -374,13 +380,29 @@ public class FireBaseClass {
         });
     }
 
-    public void UploadPhoto(Uri file,final FirebaseCallback firebaseCallback){
-        StorageReference reference = mstorageRef.child("profile_images");
-        reference.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+    public void UploadPhoto(final Uri file, final FirebaseCallback firebaseCallback){
+        String filename = "";
+        Random ran = new Random();
+        for(int i = 0;i <20;i++)
+        {
+            filename += (char)(97+(ran.nextInt(26)));
+        }
+        final StorageReference mountainsRef = mstorageRef.child(filename + ".jpg");
+        final String finalFilename = filename + ".jpg";
+        mountainsRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                String download_Uri = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                firebaseCallback.geturi(download_Uri);
+                mountainsRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        firebaseCallback.geturi(uri.toString());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        firebaseCallback.upload_done(false);
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

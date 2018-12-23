@@ -69,7 +69,7 @@ public class MyList_Adapter extends BaseAdapter {
         Button pireport = v.findViewById(R.id.mlreport);
         Button mlshowcontacts = v.findViewById(R.id.mlshowcontacts);
 
-        Picasso.get().load(items.get(position).getPicture()).into(piimage);
+        Picasso.get().load(items.get(position).getPictureurl()).into(piimage);
         piname.setText(items.get(position).getName());
         pidesc.setText(items.get(position).getDescription());
         pireport.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +114,7 @@ public class MyList_Adapter extends BaseAdapter {
 
                         @Override
                         public void getuser(User user) {
+                            user.setEmail(items.get(position).getEmail());
                             if (user != null) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                                 builder.setMessage("Name : " + user.getName() + "\n" + "Email : " + user.getEmail() + "\n" + "Mobile : " + user.getMobile() + "\n")
@@ -123,6 +124,7 @@ public class MyList_Adapter extends BaseAdapter {
                                             }
                                         });
                                 builder.create();
+                                builder.show();
                             }
                         }
                     });
@@ -136,6 +138,7 @@ public class MyList_Adapter extends BaseAdapter {
                                 }
                             });
                     builder.create();
+                    builder.show();
                 }
             }
         });

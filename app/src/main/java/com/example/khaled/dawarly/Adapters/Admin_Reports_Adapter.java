@@ -97,6 +97,7 @@ public class Admin_Reports_Adapter extends BaseAdapter {
 
                     @Override
                     public void getuser(User user) {
+                        user.setEmail(reports.get(position).getEmail());
                         User.current_user = user;
                         activity.startActivity(new Intent(activity,Activity_Items_of_User.class));
                     }
@@ -185,6 +186,7 @@ public class Admin_Reports_Adapter extends BaseAdapter {
                             }
                         });
                 builder.create();
+                builder.show();
             }
         });
         rdeletereport.setOnClickListener(new View.OnClickListener() {
@@ -238,6 +240,7 @@ public class Admin_Reports_Adapter extends BaseAdapter {
                             }
                         });
                 builder.create();
+                builder.show();
             }
         });
 
