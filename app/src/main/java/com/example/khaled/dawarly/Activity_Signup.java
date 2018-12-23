@@ -119,6 +119,16 @@ public class Activity_Signup extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"whats your gender",Toast.LENGTH_SHORT).show();
             return;
         }
+        if (day.equals("30")&&month.equals("2"))
+        {
+            Toast.makeText(getApplicationContext(),"wrong birhday",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (day.equals("31")&&(month.equals("2")||month.equals("4")||month.equals("6")||month.equals("9")||month.equals("11")))
+        {
+            Toast.makeText(getApplicationContext(),"wrong birhday",Toast.LENGTH_SHORT).show();
+            return;
+        }
         final User user = new User();
         user.setName(firstname + " " + secondname);
         user.setEmail(email);
